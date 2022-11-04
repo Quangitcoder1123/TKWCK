@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <base href="../public">
     <style type="text/css">
       .div_center{
           text-align: center;
@@ -68,47 +69,47 @@
               @endif
           <div class="div_center">
             <h1 class="font_size">
-              Add Product
-            </h1>
+                Cập Nhật Sản Phẩm
+             </h1>
 
 
-            <form action="{{ url('/add_product') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('/update_product_confirm',$product->id) }}" method="POST" enctype="multipart/form-data">
           @csrf;
               <div class="div_design">
-            <label>Tên sản phẩm</label>
-            <input class="text_color"type="text" name="title" placeholder="Write a title" required="">
+            <label>Product Title</label>
+            <input value="{{ $product->title }}"class="text_color"type="text" name="title" placeholder="Write a title" required="">
           </div>
            
           <div class="div_design">
-            <label>Mô tả sản phẩm</label>
-            <input class="text_color"type="text" name="description" placeholder="Write a title"  required="">
+            <label>Product Description</label>
+            <input value="{{ $product->description }}" class="text_color"type="text" name="description" placeholder="Write a title"  required="">
           </div>
           <div class="div_design">
 
-            <label>Giá gốc: </label>
-            <input class="text_color"type="number" name="price" placeholder="Write a title"  required="">
+            <label>Product Price: </label>
+            <input value="{{ $product->price }}" class="text_color"type="number" name="price" placeholder="Write a title"  required="">
           </div >
           
           <div class="div_design">
 
-            <label>Giá giảm: </label>
-            <input class="text_color"type="number" name="discount_price" placeholder="Write a Discout is ap"  required="">
+            <label>Discount Price: </label>
+            <input value="{{ $product->discount_price }}" class="text_color"type="number" name="discount_price" placeholder="Write a Discout is ap"  required="">
           </div>
           <div class="div_design">
 
             <label>Số lượng: </label>
-            <input class="text_color"type="number" name="quantity" placeholder="Write a Discout is ap"  required="">
+            <input value="{{ $product->discount_price }}" class="text_color"type="number" name="quantity" placeholder="Write a Discout is ap"  required="">
           </div>
 
          
           
           <div class="div_design">
 
-            <label>Loại sản phẩm: </label>
+            <label>Product Catogory: </label>
 
             <select class="text_color" name="catagory" required="">
-              <option value="" selected> Thêm sản phẩm ở đây</option>
-              
+              <option value="{{ $product->catagory }}" selected>={{ $product->catagory }}</option>
+           
               @foreach ($catagory as $catagory)
               <option value="{{ $catagory->catagory_name }}">{{ $catagory->catagory_name }}</option>
               @endforeach
@@ -117,15 +118,20 @@
             </select>
           </div>
         
+          <div class="div_design">
+
+            <label>Hình ảnh hiện tại: </label>
+            <img style="margin:auto"height="100" width="100" src="./product/{{ $product->image }}" alt="">
+        </div>
           
           <div class="div_design">
 
-            <label>Ảnh sản phẩm: </label>
-            <input type="file" name="image" required=""  >
+            <label>Thay đổi ảnh: </label>
+            <input type="file" name="image"  >
           </div>
 
           <div class="div_design">
-            <input type="submit" value="Add Product" class="btn btn-primary">
+            <input type="submit" value="Cập nhập sản phẩm" class="btn btn-primary">
           </div>
 
         </form>
