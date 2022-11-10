@@ -60,7 +60,11 @@
          <!-- header section strats -->
         @include('home.header')
          <!-- end header section -->
-
+         @if(session()->has('message'))
+         <div class="alert alert-success">
+             {{ session()->get('message')}}
+         </div>
+         @endif
          <!-- end slider section -->
       
       <div class="center">
@@ -81,7 +85,7 @@
                 <td>{{$cart->product_title}}</td>
                 <td>{{$cart->quantity}}</td>
                 <td>{{$cart->price}}</td>
-                <td><img class="img_deg" src="/product/{{ $cart->image }}"></td>
+                <td><img class="img_deg" src="./product/{{ $cart->image }}"></td>
                 <td>
                     <a class="btn btn-danger" onclick="return confirm('Are you sure to remove this product?')" href="{{url('/remove_cart',$cart->id)}}">remove</a>
                 </td>
@@ -97,7 +101,12 @@
         <div>
             <h1 class="total_deg">Total Price: {{ $totalprice }}</h1>
         </div>
+        <div>
+            <h1 style="font-size:25px; padding-bottom:15px">Proceed to Order</h1>
+            <a href="{{ url('cash_order') }}" class="btn btn-danger">Cash on Delivery</a>
+            <a href="{{ url('stripe',$totalprice) }}" class="btn btn-danger">Pay using card</a>
 
+        </div>
       </div>
 
       <!-- footer end -->

@@ -65,7 +65,7 @@
         </h6> 
         <h6>Product Quantity: {{ $product->quantity }}</h6>
         
-        <form action="{{ url('add_cart',$products->id) }}" method="POST">
+        <form action="{{ url('add_cart',$product->id) }}" method="POST">
          @csrf
          <div class="row">
             <div class="col-md-4">
