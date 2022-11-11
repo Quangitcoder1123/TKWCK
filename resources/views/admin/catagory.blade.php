@@ -22,6 +22,8 @@
     }
     </style>
     <!-- Required meta tags -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Corona Admin</title>
@@ -84,7 +86,7 @@
                             Toys
                         </td>
                         <td>
-                            <a onclick="return confirm('Are You Sure To Delete This')"class="btn btn-danger" href="{{ url('delete_catagory',$data->id) }}" >Delete</a>
+                            <a onclick="confirmation(event)" class="btn btn-danger" href="{{ url('delete_catagory',$data->id) }}" >Delete</a>
                         </td>
                     </tr>
                     @endforeach
@@ -112,6 +114,29 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="admin/assets/js/dashboard.js"></script>
+    
     <!-- End custom js for this page -->
+    <script>
+        function confirmation(ev){
+            ev.preventDefault();
+            var urlToRedirect = ev.currentTarget.getAttribute('href');
+            console.log(urlToRedirect);
+            swal(
+                {
+                    title: "Are you sure to cancel this Catagory",
+                    text: "You will not be able to revert this",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+    
+                }  )
+                .then((willCancel)=>
+                {
+                    if (willCancel) {
+                        window.location.href = urlToRedirect;
+                    }
+                });
+        }
+       </script>
   </body>
 </html>

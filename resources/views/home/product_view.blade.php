@@ -2,19 +2,16 @@
     <div class="container">
        <div class="heading_container heading_center">
           <h2>
-             Our <span>products</span>
+             All <span>products</span>
           </h2>
-          <br><br>
           <div>
-            <form action="{{ url('product_search') }}" method="POST">
+            <form action="{{ url('search_product') }}" method="POST">
                @csrf
                <input style="width:500px" type="text" placeholder="Search For SomeThing" name="search">
                <input type="submit" value="Search">
             </form>
           </div>
        </div>
-
-       
        @if(session()->has('message'))
        <div class="alert alert-success">
            {{ session()->get('message')}}

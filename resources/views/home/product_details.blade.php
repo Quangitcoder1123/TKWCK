@@ -29,7 +29,12 @@
          <!-- end header section -->
          <!-- slider section -->
          <!-- end slider section -->
-      </div>
+         @if(session()->has('message'))
+         <div class="alert alert-success">
+             {{ session()->get('message')}}
+         </div>
+         @endif
+         
       <div class="col-sm-6 col-md-4 col-lg-4" style="margin: auto;width:50%;">
       
            <div class="img-box">

@@ -1,4 +1,6 @@
+<base href="../components">
 <x-guest-layout>
+    <div class="card m-auto" style="width: 36rem;">
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
@@ -41,5 +43,6 @@
                 </form>
             </div>
         </div>
+    
     </x-jet-authentication-card>
 </x-guest-layout>

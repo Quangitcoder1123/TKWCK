@@ -66,5 +66,9 @@ Route::get('/cancel_order/{id}',[HomeController::class,'cancel_order']);
 Route::post('/add_comment',[HomeController::class,'add_comment']);
 Route::post('/add_reply',[HomeController::class,'add_reply']);
 
+Route::post('/product_search',[HomeController::class,'product_search']);
+Route::get('/products',[HomeController::class,'product']);
+Route::post('/search_product',[HomeController::class,'search_product']);
+
 ?>
 

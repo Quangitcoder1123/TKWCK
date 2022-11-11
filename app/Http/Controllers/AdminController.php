@@ -9,12 +9,19 @@ use App\Models\order;
 use App\Notifications\SendEmailNotification;
 use  Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
     public function view_catagory() {
-        $data=catagory::all();
-        return view('admin.catagory',compact('data'));
+        if(Auth::id()){
+            $data=catagory::all();
+            return view('admin.catagory',compact('data'));
+        }
+        else{
+            return redirect('login');
+        }
+      
     }
     public function add_catagory(Request $request) {
         $data = new catagory;
@@ -68,6 +75,8 @@ class AdminController extends Controller
         return view('admin.update_product',compact('product','catagory'));
     }
     public function update_product_confirm(Request $request, $id){
+     
+     if(Auth::id()){
         $product=product::find($id);
         $product->title=$request->title;
                 $product->description=$request->description;
@@ -86,6 +95,11 @@ class AdminController extends Controller
                
                 $product->save();
                 return redirect()->back()->with('message','Prouduct Added Successfully');
+     }
+     else{
+        return redirect('login');
+     }
+     
     }
 
     public function order() {
